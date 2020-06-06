@@ -70,46 +70,80 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var title = 'Random Dog';
+    var title = 'Daily Dog';
     return MaterialApp(
-      title: title,
-      theme: ThemeData(
-        primarySwatch: MaterialColor(0xFFf07878, redChalk),
-      ),
-      home: Scaffold(
-        backgroundColor: Color(0xFF90d8c0),
-        appBar: AppBar(title: Text(title, style: TextStyle(fontSize: 40))),
-        body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return InkWell(
-                    onTap: handleTap,
-                    child: Container(
-                        width: 300.0,
-                        height: 300.0,
-                        decoration: new BoxDecoration(
-                            image: new DecorationImage(
-                              image: new NetworkImage(snapshot.data.message),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius:
-                                new BorderRadius.all(new Radius.circular(50.0)),
-                            border: new Border.all(
-                              color: MaterialColor(0xFFf07878, redChalk),
-                              width: 10.0,
-                            ))));
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-
-              // By default, show a loading spinner.
-              return CircularProgressIndicator();
-            },
-          ),
+        title: title,
+        theme: ThemeData(
+          primarySwatch: MaterialColor(0xFFf07878, redChalk),
         ),
-      ),
-    );
+        home: Scaffold(
+          appBar: AppBar(title: Text(title, style: TextStyle(fontSize: 30))),
+          body: Center(
+            child: new ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20.0),
+              children: [
+                Center(
+                    child: FutureBuilder<Album>(
+                  future: futureAlbum,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return InkWell(
+                          onTap: handleTap,
+                          child: Container(
+                              width: 300.0,
+                              height: 300.0,
+                              decoration: new BoxDecoration(
+                                  image: new DecorationImage(
+                                    image:
+                                        new NetworkImage(snapshot.data.message),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(30.0)),
+                                  border: new Border.all(
+                                    color: MaterialColor(0xFFf07878, redChalk),
+                                    width: 10.0,
+                                  ))));
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+
+                    // By default, show a loading spinner.
+                    return CircularProgressIndicator();
+                  },
+                )),
+                Padding(
+                    padding: const EdgeInsets.only(right: 30.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MaterialButton(
+                              elevation: 0,
+                              color: Color(0xFF90d8c0),
+                              minWidth: 1,
+                              shape: CircleBorder(
+                                  side: BorderSide(
+                                      width: 1,
+                                      color: Color(0xFF90d8c0),
+                                      style: BorderStyle.solid)),
+                              child: Icon(Icons.share, color: Colors.white),
+                              onPressed: () {}),
+                          MaterialButton(
+                              elevation: 0,
+                              color: Colors.blue[200],
+                              minWidth: 1,
+                              shape: CircleBorder(
+                                  side: BorderSide(
+                                      width: 1,
+                                      color: Colors.blue[200],
+                                      style: BorderStyle.solid)),
+                              child: Icon(Icons.save_alt, color: Colors.white),
+                              onPressed: () {}),
+                        ]))
+              ],
+            ),
+          ),
+        ));
   }
 }
