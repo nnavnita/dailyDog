@@ -94,8 +94,8 @@ class _MyAppState extends State<MyApp> {
                               image: new NetworkImage(snapshot.data.message),
                               fit: BoxFit.cover,
                             ),
-                            borderRadius: new BorderRadius.all(
-                                new Radius.circular(150.0)),
+                            borderRadius:
+                                new BorderRadius.all(new Radius.circular(50.0)),
                             border: new Border.all(
                               color: MaterialColor(0xFFf07878, redChalk),
                               width: 10.0,
