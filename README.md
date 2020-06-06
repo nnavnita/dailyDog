@@ -4,4 +4,4 @@ An app that displays random dog pictures&mdash; built using [Flutter](https://fl
 
 ## Screenshots
 
-<img alt='app icon' src='imgs/view.jpg' width='45%' hspace='20'/>
+<img alt='app icon' src='imgs/view.jpeg' width='45%' hspace='20'/>
