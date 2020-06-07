@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var title = 'Daily Dog';
+    var title = 'TapDog';
     return MaterialApp(
         title: title,
         theme: ThemeData(
